@@ -11,22 +11,18 @@ import javax.persistence.Table;
 @Table(name="NOTA")
 @Entity
 public class Nota implements Serializable{
-
-	//Constructor Vacio
-	public Nota()
-	{
+	
+	public Nota(){
 		
 	}
 	
-	//Constructor con todos los campos
 	public Nota(long id, String nombre, String titulo, String contenido) {
 		this.id = id;
 		this.nombre = nombre;
 		this.titulo = titulo;
 		this.contenido = contenido;
 	}
-	
-	//Generacion de los campos de las tablas
+
 	@GeneratedValue
 	@Id
 	@Column(name="ID_NOTA")
@@ -41,8 +37,6 @@ public class Nota implements Serializable{
 	@Column(name="CONTENIDO")
 	private String contenido;
 
-	
-	//Metodos Getter y Setter para acceder a los datos privados
 	public long getId() {
 		return id;
 	}
@@ -75,7 +69,5 @@ public class Nota implements Serializable{
 		this.contenido = contenido;
 	}
 
-	
-	
-	
 }
+

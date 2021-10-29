@@ -3,23 +3,17 @@ package com.notas.core.model;
 import com.notas.core.entity.Nota;
 
 public class MNota {
-
-	//Constructor vacio
-	public MNota()
-	{
+	public MNota() {
 		
 	}
 	
-	//Constructor que pida una entidad 'nota'
-	public MNota(Nota nota)
-	{
+	public MNota(Nota nota) {
 		this.id = nota.getId();
 		this.nombre = nota.getNombre();
 		this.titulo = nota.getTitulo();
 		this.contenido = nota.getContenido();
 	}
 	
-	//Constructor con todos los campos
 	public MNota(long id, String nombre, String titulo, String contenido) {
 		this.id = id;
 		this.nombre = nombre;
@@ -28,34 +22,43 @@ public class MNota {
 	}
 	
 	private long id;
-	private String nombre;
-	private String titulo;
-	private String contenido;
 	
-	//Metodos Getter y Setter
+	private String nombre;
+	
+	private String titulo;
+	
+	private String contenido;
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getTitulo() {
 		return titulo;
 	}
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
 	public String getContenido() {
 		return contenido;
 	}
+
 	public void setContenido(String contenido) {
 		this.contenido = contenido;
 	}
-		
 }
+

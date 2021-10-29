@@ -9,18 +9,13 @@ import com.notas.core.entity.Nota;
 import com.notas.core.model.MNota;
 
 @Component("convertidor")
-public class Convertidor {
-
-	public List<MNota> convertirLista(List<Nota> notas)
-	{
+public class Convertidor{
+	public List<MNota> convertirLista(List<Nota> notas){
 		List<MNota> mnotas = new ArrayList<>();
 		
-		for(Nota nota : notas)
-		{
+		for(Nota nota : notas) {
 			mnotas.add(new MNota(nota));
 		}
-		
 		return mnotas;
 	}
-	
 }

@@ -16,7 +16,6 @@ import com.notas.core.repository.NotaRepositorio;
 
 @Service("servicio")
 public class NotaService {
-
 	@Autowired
 	@Qualifier("repositorio")
 	private NotaRepositorio repositorio;
@@ -25,92 +24,57 @@ public class NotaService {
 	@Qualifier("convertidor")
 	private Convertidor convertidor;
 	
-	//Creacion de un log
 	private static final Log logger = LogFactory.getLog(NotaService.class);
 	
-	//Metodo para crear un registro
-	public boolean crear(Nota nota)
-	{
+	public boolean crear(Nota nota){
 		logger.info("CREANDO NOTA");
-		try{
+		try {
 			repositorio.save(nota);
 			logger.info("NOTA CREADA");
 			return true;
-		}catch(Exception e){
-			logger.error("ERROR EN LA CREACION DE LA NOTA");
+		}catch(Exception e) {
+			logger.error("HUBO UN ERROR");
 			return false;
 		}
-		
 	}
 	
-	//Metodo para actualizar un registro
-	public boolean actualizar(Nota nota)
-	{
+	public boolean actualizar(Nota nota){
 		logger.info("ACTUALIZANDO NOTA");
-		try{
+		try {
 			repositorio.save(nota);
 			logger.info("NOTA ACTUALIZADA");
 			return true;
-		}catch(Exception e){
-			logger.info("ERROR EN LA ACTUALIZACION");
+		}catch(Exception e) {
+			logger.error("HUBO UN ERROR");
 			return false;
 		}
-		
 	}
 	
-	//Metodo para eliminar un registro con base en un id y su nombre
-	public boolean borrar(String nombre, long id)
-	{
-		logger.warn("ELIMINANDO NOTA");
-		try{
+	public boolean borrar(String nombre, long id) {
+		logger.warn("BORRANDO NOTA");
+		try {
+			
 			Nota nota = repositorio.findByNombreAndId(nombre, id);
 			repositorio.delete(nota);
-			logger.info("NOTA ELIMINADA");
+			logger.info("NOTA BORRADA");
 			return true;
-		}catch(Exception e){
-			logger.info("ERROR DE ELIMINACION");
+		}catch(Exception e) {
+			logger.error("HUBO UN ERROR");
 			return false;
 		}
-		
 	}
 	
-	//Metodo para devolver todas las notas
-	public List<MNota> obtener()
-	{
+	public List<MNota> obtener(){
 		logger.info("OBTENIENDO TODOS LOS ELEMENTOS");
 		return convertidor.convertirLista(repositorio.findAll());
 	}
 	
-	
-	//Metodo para devolver una lista por 'nombre'
-	public MNota obtenerNombre(String nombre)
-	{
-		logger.info("OBTENIENDO LISTA DE NOTAS POR NOMBRE");
-		return new MNota(repositorio.findByNombre(nombre));
-	}
-	
-	//Metodo para devolver una lista de notas por 'titulo'
-	public List<MNota> obtenerTitulo(String titulo)
-	{
-		logger.info("OBTENIENDO LISTA DE NOTAS POR TITULO");
-		return convertidor.convertirLista(repositorio.findByTitulo(titulo));
-	}
-	
-	
-	//Metodo para devolver un registro con base en 'nombre' y 'titulo'
-	public MNota obtenerPorNombreTitulo(String nombre, String titulo)
-	{
-		logger.info("OBTENIENDO LISTA DE NOTAS POR NOMBRE Y TITULO");
+	public MNota obtenerPorNombreTitulo(String nombre, String titulo) {
 		return new MNota(repositorio.findByNombreAndTitulo(nombre, titulo));
 	}
 	
-	//Metodo para devolver una lista por 'nombre' e 'id'
-	public MNota obtenerNombreId(String nombre, long id)
-	{
-		logger.info("OBTENIENDO LISTA DE NOTAS POR NOMBRE E ID");
-		return new MNota(repositorio.findByNombreAndId(nombre, id));
+	public List<MNota> obtenerTitulo(String titulo){
+		return convertidor.convertirLista(repositorio.findByTitulo(titulo));
 	}
-	
-
 	
 }
